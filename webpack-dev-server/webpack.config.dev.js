@@ -22,12 +22,9 @@ module.exports = {
    // static files served from here
    contentBase: path.resolve(__dirname, "./dist/assets/media"),
    compress: true,
-   // open app in localhost:2000
    port: 3000,
    stats: 'errors-only',
    open: true,
-   inline: true,
-   hot: true,
   },
 
   output: {
