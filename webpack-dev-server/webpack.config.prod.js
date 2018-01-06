@@ -2,25 +2,63 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+const extractPlugin = new ExtractTextPlugin({
+  filename: './assets/css/app.css'
+});
 
 module.exports = {
+  // absolute path for project root
+  context: path.resolve(__dirname, 'src'),
+  
   entry: [
-    './src/entry.js',
+    './app.js'
   ],
-
+    
   // see: https://webpack.js.org/configuration/devtool/
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js',
+    filename: './assets/js/[name].bundle.js',
     // Dev and Prod build different values
-    publicPath: '/'
+    // publicPath: '/'
   },
 
   module: {
-
+    rules: [
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
+      },
+      {
+        test: /\.html$/,
+        use: ['html-loader']
+      },
+      // file-loader(for images)
+      {
+        test: /\.(jpg|png|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: 
+            {
+              name: '[name].[ext]',
+              outputPath: './assets/media/' 
+            } 
+          } 
+        ] 
+      },
+      // file-loader(for fonts)
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: ['file-loader']
+      }
+    ]
   },
 
   resolve: {
@@ -28,11 +66,12 @@ module.exports = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
-      inject: false
-    }),
     new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+    }),
+    new webpack.optimize.UglifyJsPlugin(),
+    // extract-text-webpack-plugin instance
+    extractPlugin
   ]
 }
