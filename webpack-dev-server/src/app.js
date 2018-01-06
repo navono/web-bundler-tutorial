@@ -1,4 +1,4 @@
-import './assets/css/style.css';
+import './assets/scss/app.scss';
 
 function component() {
   var ele = document.createElement('div');

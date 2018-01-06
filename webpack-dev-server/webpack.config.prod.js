@@ -29,10 +29,24 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: "css-loader"
+        test: /\.scss$/,
+        include: [path.resolve(__dirname, 'src', 'assets', 'scss')],
+        use: extractPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
+            }
+          ],
+          fallback: 'style-loader'
         })
       },
       {
