@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const extractPlugin = new ExtractTextPlugin({
   filename: './assets/css/app.css'
@@ -104,7 +105,7 @@ module.exports = {
 
     // Dev only
     new webpack.HotModuleReplacementPlugin(),
-
+    new BundleAnalyzerPlugin(),
     // extract-text-webpack-plugin instance
     extractPlugin
   ]
