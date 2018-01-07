@@ -12,13 +12,13 @@ module.exports = {
   // absolute path for project root
   context: path.resolve(__dirname, 'src'),
   
+  // see: https://webpack.js.org/configuration/devtool/
+  devtool: 'source-map',
+
   entry: [
     './index'
   ],
     
-  // see: https://webpack.js.org/configuration/devtool/
-  devtool: 'source-map',
-
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: './assets/js/[name].bundle.js',
@@ -92,10 +92,14 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(['dist']),
+
     new HtmlWebpackPlugin({
+      title: 'React',
       template: 'index.html',
     }),
+
     new webpack.optimize.UglifyJsPlugin(),
+
     // extract-text-webpack-plugin instance
     extractPlugin
   ]

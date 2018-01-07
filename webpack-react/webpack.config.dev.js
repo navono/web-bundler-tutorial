@@ -112,6 +112,7 @@ module.exports = {
 
     // Dev only
     new webpack.HotModuleReplacementPlugin(),
+    
     // bundle size analyzer
     // new BundleAnalyzerPlugin(),
 
