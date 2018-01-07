@@ -1,4 +1,4 @@
-HMR的[介绍](https://medium.com/@rajaraodv/webpack-hot-module-replacement-hmr-e756a726a07)
+# HMR的[介绍](https://medium.com/@rajaraodv/webpack-hot-module-replacement-hmr-e756a726a07)
 
 - HMR 是`webpack`的一个可选功能
 - 需要借助`webpack-dev-server`，或者`webpack-hot-middleware`和`webpack-dev-middleware`与`express`搭配使用
@@ -6,7 +6,7 @@ HMR的[介绍](https://medium.com/@rajaraodv/webpack-hot-module-replacement-hmr-
 - 只能用于开发模式，因为它额外增加了很多代码，并且`webpack-dev-server`只是一个开发模式的服务器
 
 
-HMR原理图：
+# HMR原理图：
 ![](HMR_principle.png)
 
 
@@ -33,3 +33,58 @@ HMR原理图：
 13. 如果在应用过程中发生了错误，那么`hot\dev-ser`库会得到通知
 
 
+# 开启HMR方法
+- 使用`CLI`命令行<br>
+  比如全局安装情况下：
+  ```js
+  webpack-dev-server --inline --hot
+  ```
+- 使用`webpack.config.js`配置文件。如本工程
+- 使用`NPM模块`<br>
+  ```js
+  const webpack = require('webpack);
+  const webpackDevServer = require('webpack-dev-server');
+  const config = require('webpack.config');
+  
+  new webpackDevServer(webpack(config), {
+    publicPath: config.output.publicPath,
+    hot: true,
+    historyApiFallback: true,
+  }).listen(3000, 'localhost', function (err, result) {
+    if (err) return console.error(err);
+
+    console.log('Listening at http://localhost:3000');
+  });
+  ```
+  然后在命令行中执行运行：
+  ```js
+  npm server.js
+  ```
+  以上是借助`webpack-dev-server`，其实还可以借助`webpack-dev-middleware`, `webpack-hot-middleware`和`express`自己搭建一个`HMR`服务：
+  ```js
+  const path = require('path');
+  const webpack = require('webpack');
+  const express = require('express');
+  const config = require('./webpack.config');
+
+  const app = express();
+  const compiler = webpack(config);
+
+  app.use(require('webpack-dev-middleware')(compiler, {
+    publicPath: config.output.publicPath
+  }));
+
+  app.use(require('webpack-hot-middleware')(compiler));
+
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'index.html'));
+  });
+
+  app.listen(3000, function(err) {
+    if (err) {
+      return console.error(err);
+    }
+
+    console.log('Listening at http://localhost:3000/');
+  });
+  ```
