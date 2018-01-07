@@ -12,29 +12,31 @@ module.exports = {
   // absolute path for project root
   context: path.resolve(__dirname, 'src'),
 
-  entry: [
-    'react-hot-loader/patch',    
-    // dev-server: 遇到错误会重新刷新浏览器
-    // only-dev-server: 遇到错误不会重新刷新浏览器，React App推荐使用。因为不会重置状态
-    // 'webpack/hot/dev-server',
-
-    // relative path declaration
-    './index.jsx',
-  ],
-
   // Dev only
   devtool: 'inline-source-map',
   devServer: {
-   // static files served from here
-   contentBase: path.resolve(__dirname, "./dist/assets"),
-   compress: true,
-   port: 3000,
-  //  stats: 'errors-only',
-   open: true,
-  },
+    // static files served from here
+    contentBase: path.resolve(__dirname, "./dist"),
+    compress: true,
+    hot: true,
+    port: 3000,
+    historyApiFallback: true,
+   //  stats: 'errors-only',
+    open: true,
+   },
+
+  entry: [
+    'react-hot-loader/patch',
+    // dev-server: 遇到错误会重新刷新浏览器
+    // only-dev-server: 遇到错误不会重新刷新浏览器，React App推荐使用。因为不会重置状态
+    // 'webpack/hot/only-dev-server',
+
+    // relative path declaration
+    './index',
+  ],
 
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, './dist'),
     filename: './assets/js/[name].bundle.js',
   },
 
@@ -44,10 +46,12 @@ module.exports = {
         test: /\.jsx$/,
         include: /src/,
         exclude: /node_modules/,
-        use: 
-        {
-          loader: "babel-loader",
-        }
+        use:
+        [
+          {
+            loader: "babel-loader",
+          }
+        ]
       },
       {
         test: /\.scss$/,

@@ -5,7 +5,17 @@ import App from './app';
 import './assets/scss/app.scss';
 
 
-ReactDOM.render(
-  <App />,
-  document.getElementById('app'),
-);
+const render = Component => {
+  ReactDOM.render(
+    <AppContainer>
+      <Component />
+    </AppContainer>,
+    document.getElementById('app')
+  )
+};
+
+render(App);
+
+if (module.hot) {
+  module.hot.accept('./app', () => { render(App) })
+}
