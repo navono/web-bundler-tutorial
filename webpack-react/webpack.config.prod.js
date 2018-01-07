@@ -13,7 +13,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   
   entry: [
-    './app.js'
+    './index'
   ],
     
   // see: https://webpack.js.org/configuration/devtool/
@@ -87,7 +87,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js']
+    extensions: ['.js', '.jsx']
   },
 
   plugins: [
