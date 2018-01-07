@@ -14,6 +14,7 @@ module.exports = {
 
   entry: [
      // relative path declaration
+    'webpack/hot/dev-server',
     './app.jsx',
   ],
 
@@ -105,7 +106,9 @@ module.exports = {
 
     // Dev only
     new webpack.HotModuleReplacementPlugin(),
-    new BundleAnalyzerPlugin(),
+    // bundle size analyzer
+    // new BundleAnalyzerPlugin(),
+
     // extract-text-webpack-plugin instance
     extractPlugin
   ]
