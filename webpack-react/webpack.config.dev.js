@@ -22,7 +22,7 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
    // static files served from here
-   contentBase: path.resolve(__dirname, "./dist/assets/media"),
+   contentBase: path.resolve(__dirname, "./dist/assets"),
    compress: true,
    port: 3000,
    stats: 'errors-only',
