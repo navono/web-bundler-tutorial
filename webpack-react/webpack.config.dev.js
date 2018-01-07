@@ -13,9 +13,13 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
 
   entry: [
-     // relative path declaration
-    'webpack/hot/dev-server',
-    './app.jsx',
+    'react-hot-loader/patch',    
+    // dev-server: 遇到错误会重新刷新浏览器
+    // only-dev-server: 遇到错误不会重新刷新浏览器，React App推荐使用。因为不会重置状态
+    // 'webpack/hot/dev-server',
+
+    // relative path declaration
+    './index.jsx',
   ],
 
   // Dev only
@@ -25,7 +29,7 @@ module.exports = {
    contentBase: path.resolve(__dirname, "./dist/assets"),
    compress: true,
    port: 3000,
-   stats: 'errors-only',
+  //  stats: 'errors-only',
    open: true,
   },
 
@@ -40,11 +44,9 @@ module.exports = {
         test: /\.jsx$/,
         include: /src/,
         exclude: /node_modules/,
-        use: {
+        use: 
+        {
           loader: "babel-loader",
-          options: { 
-            presets: ['env', 'react']
-          } 
         }
       },
       {
@@ -95,7 +97,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js']
+    extensions: ['.js', '.jsx']
   },
 
   plugins: [

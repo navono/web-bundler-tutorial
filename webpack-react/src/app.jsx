@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import './assets/scss/app.scss';
 
-class App extends Component {
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: 0
+    };
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState((prevState, props) => ({
+      counter: prevState.counter + 1
+    }));
+  }
+
   render() {
+    const { name = 'React' } = this.props;
     return (
       <div>
-        <p>Hello, React</p>
+        <p>Hello, {name}. Count: {this.state.counter}</p>
+        <input type='button' value='Click' onClick={this.handleClick}/>
       </div>
     );
   }
 };
-
-ReactDOM.render(
-  <App></App>,
-  document.getElementById('app')
-);
