@@ -85,6 +85,9 @@ const baseConfig = {
       title: 'React',
       template: 'index.html',
     }),
+
+    // extract-text-webpack-plugin instance
+    extractPlugin
   ]
 }
 

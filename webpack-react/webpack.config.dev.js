@@ -37,9 +37,6 @@ const devConfig = merge(
       
       // bundle size analyzer
       // new BundleAnalyzerPlugin(),
-  
-      // extract-text-webpack-plugin instance
-      extractPlugin
     ]
   }
 )
