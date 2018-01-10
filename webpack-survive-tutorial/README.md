@@ -94,7 +94,40 @@ yarn add nodemon -D
 
 压缩可以使用`purifycss-webpack`插件。需要注意的是，CSS文件的提取是在压缩前；同时，CSS会失去`source maps`。
 
-## Loading
+
+## Loading Assets
+`Webpack`的加载器（loaders）的加载顺序是`从右到左`，`从下到上`。比如：
+```js
+{
+  test: /\.css$/,
+  use: ["style-loader", "css-loader"],
+},
+```
+和
+```js
+{
+  test: /\.css$/,
+  use: "style-loader",
+},
+{
+  test: /\.css$/,
+  use: "css-loader",
+},
+```
+是等价的。但是也可以使用`enforce`来强制设置加载时机。选项包括：`pre`和`post`。
+
+内联定义：
+```js
+// Process foo.png through url-loader and other
+// possible matches.
+import "url-loader!./foo.png";
+
+// Override possible higher level match completely
+import "!!url-loader!./bar.png";
+```
+
+其他的配置，比如加载图片、字体，参考`webpack-react`工程。
+
 
 ## Building
 
