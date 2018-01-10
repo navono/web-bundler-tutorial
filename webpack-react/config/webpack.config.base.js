@@ -13,7 +13,7 @@ const baseConfig = {
 
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: './assets/js/[name].bundle.js',
+    filename: './assets/js/[name].bundle.[hash].js',
   },
 
   module: {

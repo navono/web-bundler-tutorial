@@ -10,9 +10,10 @@ const prodConfig = merge(
     // see: https://webpack.js.org/configuration/devtool/
     devtool: 'source-map',
 
-    entry: [
-      './index'
-    ],
+    entry: {
+      app: './index',
+      vendor: ['react', 'react-dom'],
+    },
 
     plugins: [
       new CleanWebpackPlugin(['dist'], {
@@ -20,6 +21,11 @@ const prodConfig = merge(
       }),
   
       new webpack.optimize.UglifyJsPlugin(),
+
+      new webpack.optimize.CommonsChunkPlugin({
+        name: "vendor",
+        minChunks: ({ resource }) => /node_modules/.test(resource),
+      }),
     ]
   }
 );
