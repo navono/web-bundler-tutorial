@@ -84,6 +84,16 @@ yarn add nodemon -D
 
 ## Styling
 
+查找原理：
+`css-loader`默认资源查找的是相对路径。如果需要引入绝对路径下的资源，需要依赖插件`copy-webpack-plugin`。对于`Sass`和`Less`，有`resolve-url-plugin`。
+
+`css-loader`针对于`@import`和`url()`引入的样式风格。
+`style-loader`则是将其转换成JavaScript插入到DOM中，并且同时实现了`Webpack`的`Hot Module Replacement`接口。
+
+文件的提取和自动增加前缀以及其他的配置参考`webpack-react`工程。
+
+压缩可以使用`purifycss-webpack`插件。需要注意的是，CSS文件的提取是在压缩前；同时，CSS会失去`source maps`。
+
 ## Loading
 
 ## Building
