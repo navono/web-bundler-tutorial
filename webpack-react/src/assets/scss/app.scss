@@ -3,4 +3,5 @@ body {
   background: $bgcolor;
   color: $color;
   display: flex;
+  flex-direction: column;
 }

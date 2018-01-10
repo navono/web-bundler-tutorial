@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button } from 'antd';
 
 export default class App extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ export default class App extends Component {
     return (
       <div>
         <p>Hello, {name}. Count: {this.state.counter}</p>
-        <input type='button' value='Click' onClick={this.handleClick}/>
+        <Button onClick={this.handleClick}>Click</Button>
       </div>
     );
   }

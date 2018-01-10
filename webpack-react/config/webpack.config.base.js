@@ -57,6 +57,18 @@ const baseConfig = {
         })
       },
       {
+        test: /\.less$/,
+        test: /\.less$/,
+        use: [
+          "style-loader", 
+          {
+            loader: 'css-loader',
+            options: {sourceMap: 1}
+          },
+          "less-loader"
+        ],
+      },
+      {
         test: /\.html$/,
         use: ['html-loader']
       },
