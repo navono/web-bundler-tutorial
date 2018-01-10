@@ -72,6 +72,14 @@ yarn add nodemon -D
 
 `webpack-dev-server`的其他`options`可以参考[DevServer](https://webpack.js.org/configuration/dev-server/)
 
+---
+组合式的配置。可以用以下方式来管理`Webpack`的配置信息：
+- 将配置文件根据运行环境分布到多个文件中，然使用`--config`来指定
+- 将配置文件打包到库中。比如：`webpack-blocks`, `electron-webpack`
+- 将配置文件打包到工具中。比如`create-react-app`
+- 将配置信息放入到单个文件来管理。然通过`--env`参数来控制运行的环境
+
+我们通过将工程`webpack-react`的配置重构成组合式的`Webpack`配置来演示整个过程。
 
 
 ## Styling
