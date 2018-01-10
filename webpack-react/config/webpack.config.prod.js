@@ -15,7 +15,9 @@ const prodConfig = merge(
     ],
 
     plugins: [
-      new CleanWebpackPlugin(['dist']),
+      new CleanWebpackPlugin(['dist'], {
+        root: path.resolve(__dirname, '../')
+      }),
   
       new webpack.optimize.UglifyJsPlugin(),
     ]

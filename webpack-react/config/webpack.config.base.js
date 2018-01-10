@@ -9,10 +9,10 @@ const extractPlugin = new ExtractTextPlugin({
 
 const baseConfig = {
   // absolute path for project root
-  context: path.resolve(__dirname, 'src'),
+  context: path.resolve(__dirname, '../src'),
 
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: './assets/js/[name].bundle.js',
   },
 
@@ -31,7 +31,7 @@ const baseConfig = {
       },
       {
         test: /\.scss$/,
-        include: [path.resolve(__dirname, 'src', 'assets', 'scss')],
+        include: [path.resolve(__dirname, '../', 'src', 'assets', 'scss')],
         use: extractPlugin.extract({
           use: [
             {

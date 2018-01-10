@@ -9,9 +9,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --config webpack.config.dev.js --progress --color",
-    "build": "webpack --config webpack.config.dev.js --progress --color",
-    "build:prod": "webpack --config webpack.config.prod.js --progress --color"
+    "dev": "webpack-dev-server --config ./config/webpack.config.dev.js --progress --color",
+    "build": "webpack --config ./config/webpack.config.dev.js --progress --color",
+    "build:prod": "webpack --config ./config/webpack.config.prod.js --progress --color"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
