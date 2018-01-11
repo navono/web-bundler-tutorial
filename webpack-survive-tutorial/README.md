@@ -130,6 +130,74 @@ import "!!url-loader!./bar.png";
 
 
 ## Building
+`Source Maps`参考[官方文档](https://webpack.js.org/configuration/devtool/#devtool)
+
+---
+`bundle split`
+
+![](bundle-split1.png)
+![](bundle-split2.png)
+
+`CommonsChunkPlugin`有三个标志：
+- default
+- children
+- async
+
+![](bundle-split3.png)
+
+---
+`code split`
+有两种方式实现：
+- import（dynamic import尚未被官方支持，使用时需要Babel支持（babel-plugin-syntax-dynamic-import））
+  ```js
+  Promise.all([
+    import("lunr"),
+    import("../search_index.json"),
+    ]).then(([lunr, search]) => {
+      return {
+        index: lunr.Index.load(search.index),
+        lines: search.lines,
+      };
+  });
+  ```
+- require.ensure
+  ```js
+  require.ensure(
+    // Modules to load, but not execute yet
+    ["./load-earlier"],
+    () => {
+      const loadEarlier = require("./load-earlier");
+
+      // Load later on demand and include to the same chunk
+      const module1 = require("./module1");
+      const module2 = require("./module2");
+
+      ...
+    },
+    err => console.error(err),
+    "optional-name"
+  );
+  ```
+  上面的例子也可以这样写：
+  ```js
+  require.ensure(
+    [],
+    () => {
+      require.include("./load-earlier");
+
+      const loadEarlier = require("./load-earlier");
+
+      // Load later on demand and include to the same chunk
+      const module1 = require("./module1");
+      const module2 = require("./module2");
+
+      ...
+    }
+  );
+  ```
+
+首先需要找到一个分离点使得负载按需加载。
+
 
 ## Optimizing
 
