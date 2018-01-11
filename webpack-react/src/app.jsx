@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
+import LazyLoad from 'react-lazy-load';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -22,7 +24,9 @@ export default class App extends Component {
     return (
       <div>
         <p>Hello, {name}. Count: {this.state.counter}</p>
-        <Button onClick={this.handleClick}>Click</Button>
+        <LazyLoad>
+          <Button onClick={this.handleClick}>Click</Button>
+        </LazyLoad>
       </div>
     );
   }
