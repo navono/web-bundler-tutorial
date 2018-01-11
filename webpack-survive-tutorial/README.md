@@ -201,6 +201,50 @@ import "!!url-loader!./bar.png";
 
 ## Optimizing
 
+### Minifying
+- minifying Javascript
+- minifying html
+- minifying CSS
+- minifying images
+
+### Tree Shaking 
+以静态的方式分析模块的定义。`Webpack`可以通过这个特性得知哪部分的代码被利用了，哪部分的代码没被利用。
+
+### env
+`webpack.DefinePlugin`
+
+### hash
+- [hash]
+- [chunkhash]
+- [contenthash] 
+
+### manifest
+包含了启动app的信息。有些插件可以使得独立的`manifest`自动插入html页面
+
+### 构建分析
+可以在`package.json`的脚本中：
+```js
+"build:stats": "webpack --env production --json > stats.json",
+```
+
+也可以使用一些插件，例如：`webpack-bundle-analyzer`, `webpack-bundle-analyzer`, `Webpack Visualizer`等。
+
+### performance 
+构建的性能。
+
+- parallel-webpack
+- HappyPack
+
+- 低级别的优化
+  1. 使用更快的 `source map`
+  2. 开发阶段使用`babel-prset-env`
+  3. 开发阶段不要使用polyfills
+  4. 屏蔽开发阶段不需要的部分
+  5. 将不怎么改变的bundle放入到DLL（Dynamically Loaded Library）中
+- Plugin 特定优化
+- Loader 特定优化
+- 再打包（rebundling）优化
+
 ## Output
 
 ## Techniques
