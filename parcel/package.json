@@ -1,0 +1,22 @@
+{
+  "name": "parcel-demo",
+  "version": "0.0.1",
+  "description": "A sample code to demonstrate parcel tool",
+  "main": "index.js",
+  "author": "Qixing Ping",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.js"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "node-sass": "^4.7.2",
+    "parcel-bundler": "^1.4.1"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
+}
