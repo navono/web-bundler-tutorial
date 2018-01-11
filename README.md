@@ -1,5 +1,5 @@
-# webpack-tutorial
-Webpack tutorial sample code
+# web-bundler-tutorial
+web bunlder tutorial sample code, include [`Webpack`](https://webpack.js.org/) and [`Parcel`](https://parceljs.org/)
 
 <!-- [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
@@ -17,12 +17,6 @@ Webpack tutorial sample code
 ```sh
 cd webpack-dev-server
 yarn
-```
-or
-
-```sh
-cd webpack-dev-server
-yarn install
 ```
 
 ## Usage
