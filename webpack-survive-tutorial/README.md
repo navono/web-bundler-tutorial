@@ -246,7 +246,87 @@ import "!!url-loader!./bar.png";
 - 再打包（rebundling）优化
 
 ## Output
+### targert
+- web（默认）
+- webworker 
+    1. 不能使用hash特性
+    2. 不能从 web worker 中操纵DOM
+- node/async-node
+- node-webkit（NW.js）
+- atom, electron, electron-main（主进程）
+- electron-renderer（渲染进程）
+
+### 多入口
+### SSR
 
 ## Techniques
+### 动态加载
+### web worker
+### 国际化
+- i18n
+
+### 测试
+- Mocha
+- Karma
+- Jest
+
+### 部署
+- gh-pages
+
+### 包别名
+内部别名:
+```js
+{
+  resolve: {
+    alias: {
+      demo: path.resolve(
+        __dirname,
+        "node_modules/demo/dist/demo.js"
+      ),
+    },
+  },
+},
+```
+
+外部：
+```js
+externals: {
+  jquery: "jquery",
+},
+```
 
 ## Extending
+### loader扩展
+### plugin扩展
+
+## 通用 Checklist
+- source map
+- 如果需要构建快速，可以参考优化章节
+- 对于配置文件的可管理性，可以使用组合式配置
+- 可以编写自定义的`Loader`和`Plugin`
+
+## 开发 Checklist
+- webpack-dev-server
+- HMR
+
+## 产品 Checklist
+- Styling
+  1. 是否独立成文件
+  2. 是否增加前缀（autoprefixing）
+  3. 是否进行未使用的CSS检测
+- Assets
+  1. images
+  2. fonts
+  3. minifying
+- Caching
+  1. bundle分离
+  2. 代码分离
+  3. 文件名增加 hash
+- Optimization
+  1. tree shaking
+  2. 环境变量
+  3. 构建分析（build analysis）
+  4. web worker
+- Output
+  1. rm 或者 rimraf 
+  2. clean-webpack-plugin
